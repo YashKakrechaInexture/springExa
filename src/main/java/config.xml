@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Adress bean for reference -->
+	<bean class="com.inexture.springExa.Address" id="address1" 
+		c:home="123"
+		c:city="Ahmedabad"/>
+	
+	<!-- DI as tag -->
+	<bean class="com.inexture.springExa.Student" id="student1">
+		<property name="id">
+			<value>1</value>
+		</property>
+		<property name="name">
+			<value>Yash</value>
+		</property>
+		<property name="subject">
+			<list>
+				<value>Physics</value>
+				<value>Chemistry</value>
+				<value>Maths</value>
+				<null/>
+			</list>
+		</property>
+		<property name="marks">
+			<set>
+				<value>10</value>
+				<value>20</value>
+				<value>30</value>
+			</set>
+		</property>
+		<property name="answer">
+			<map>
+				<entry key="first" value="10"/>
+				<entry key="second" value="20"/>
+				<entry key="third" value="30"/>
+			</map>
+		</property>
+		<property name="address" ref="address1" />
+	</bean>
+
+	<!-- DI as attribute -->
+	<bean class="com.inexture.springExa.Student" id="student2">
+		<property name="id" value="2"></property>
+		<property name="name" value="ABC"></property>
+		<!-- <property name="subject" value="Physics,Chemistry,Maths"></property> -->
+	</bean>
+	
+	<!-- DI as p namespace -->
+	<bean class="com.inexture.springExa.Student" id="student3" 
+		p:id="3"
+		p:name="DEF"/>
+		<!-- p:subject="Physics,Chemistry,Maths"/> -->
+	
+	<!-- DI through constructor -->
+	<bean class="com.inexture.springExa.Student" id="student4" 
+		c:id="4"
+		c:name="XYZ"
+		c:address-ref="address1">
+		<!-- p:subject="Physics,Chemistry,Maths"> -->
+		
+		<constructor-arg name="subject">
+			<list>
+				<value>Physics</value>
+				<value>Chemistry</value>
+				<value>Maths</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg name="marks">
+			<set>
+				<value>10</value>
+				<value>20</value>
+				<value>30</value>
+			</set>
+		</constructor-arg>
+		<constructor-arg name="answer">
+			<map>
+				<entry key="first" value="10"/>
+				<entry key="second" value="20"/>
+				<entry key="third" value="30"/>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	
+</beans>
