@@ -2,15 +2,22 @@ package com.inexture.springExa;
 
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Student {
 	private int id;
 	private String name;
 	private List<String> subject;
 	private Set<Integer> marks;
 	private Map<String,Integer> answer;
+	@Autowired
 	private Address address;
 	
 	public Student() {}
+
+	public Student(Address address) {
+		this.address = address;
+	}
 
 	public Student(int id, String name) {
 		this.id = id;

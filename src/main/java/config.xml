@@ -2,13 +2,18 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
     xmlns:p="http://www.springframework.org/schema/p"
     xmlns:c="http://www.springframework.org/schema/c"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
-    https://www.springframework.org/schema/beans/spring-beans.xsd">
+    https://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    https://www.springframework.org/schema/context/spring-context.xsd">
 
+	<context:annotation-config />
+	
 	<!-- Adress bean for reference -->
-	<bean class="com.inexture.springExa.Address" id="address1" 
+	<bean class="com.inexture.springExa.Address" id="address" 
 		c:home="123"
 		c:city="Ahmedabad"/>
 	
@@ -42,7 +47,7 @@
 				<entry key="third" value="30"/>
 			</map>
 		</property>
-		<property name="address" ref="address1" />
+		<!-- <property name="address" ref="address" /> -->
 	</bean>
 
 	<!-- DI as attribute -->
@@ -56,14 +61,14 @@
 	<bean class="com.inexture.springExa.Student" id="student3" 
 		p:id="3"
 		p:name="DEF"/>
+		<!-- autowire="byName" /> -->
 		<!-- p:subject="Physics,Chemistry,Maths"/> -->
 	
 	<!-- DI through constructor -->
 	<bean class="com.inexture.springExa.Student" id="student4" 
 		c:id="4"
 		c:name="XYZ"
-		c:address-ref="address1">
-		<!-- p:subject="Physics,Chemistry,Maths"> -->
+		c:address-ref="address" p:subject="Physics;Chemistry;Maths"> 
 		
 		<constructor-arg name="subject">
 			<list>
