@@ -3,14 +3,18 @@ package com.inexture.springExa;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 
 public class Student {
 	private int id;
 	private String name;
+	@Value("#{subjectlist}")
 	private List<String> subject;
 	private Set<Integer> marks;
 	private Map<String,Integer> answer;
 	@Autowired
+	@Qualifier("address2")
 	private Address address;
 	
 	public Student() {}

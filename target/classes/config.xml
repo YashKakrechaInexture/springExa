@@ -5,10 +5,15 @@
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:p="http://www.springframework.org/schema/p"
     xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:util="http://www.springframework.org/schema/util"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
     https://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
-    https://www.springframework.org/schema/context/spring-context.xsd">
+    https://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/beans 
+    https://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/util 
+    https://www.springframework.org/schema/util/spring-util.xsd">
 
 	<context:annotation-config />
 	
@@ -16,6 +21,17 @@
 	<bean class="com.inexture.springExa.Address" id="address" 
 		c:home="123"
 		c:city="Ahmedabad"/>
+	
+	<bean class="com.inexture.springExa.Address" id="address2" 
+		c:home="456"
+		c:city="Ahmedabad"/>
+	
+	<!-- Standalone collection -->
+	<util:list list-class="java.util.Vector" id="subjectlist">
+		<value>Physics</value>
+		<value>Chemistry</value>
+		<value>Maths</value>
+	</util:list>
 	
 	<!-- DI as tag -->
 	<bean class="com.inexture.springExa.Student" id="student1">
@@ -25,14 +41,9 @@
 		<property name="name">
 			<value>Yash</value>
 		</property>
-		<property name="subject">
-			<list>
-				<value>Physics</value>
-				<value>Chemistry</value>
-				<value>Maths</value>
-				<null/>
-			</list>
-		</property>
+		
+		<property name="subject" ref="subjectlist" />
+		
 		<property name="marks">
 			<set>
 				<value>10</value>
@@ -68,7 +79,7 @@
 	<bean class="com.inexture.springExa.Student" id="student4" 
 		c:id="4"
 		c:name="XYZ"
-		c:address-ref="address" p:subject="Physics;Chemistry;Maths"> 
+		c:address-ref="address" p:subject-ref="subjectlist"> 
 		
 		<constructor-arg name="subject">
 			<list>
