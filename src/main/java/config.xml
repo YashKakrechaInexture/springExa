@@ -34,7 +34,7 @@
 	</util:list>
 	
 	<!-- DI as tag -->
-	<bean class="com.inexture.springExa.Student" id="student1">
+	<bean class="com.inexture.springExa.Student" id="student1" scope="singleton">
 		<property name="id">
 			<value>1</value>
 		</property>
@@ -62,7 +62,7 @@
 	</bean>
 
 	<!-- DI as attribute -->
-	<bean class="com.inexture.springExa.Student" id="student2">
+	<bean class="com.inexture.springExa.Student" id="student2" parent="student1">
 		<property name="id" value="2"></property>
 		<property name="name" value="ABC"></property>
 		<!-- <property name="subject" value="Physics,Chemistry,Maths"></property> -->
@@ -76,11 +76,13 @@
 		<!-- p:subject="Physics,Chemistry,Maths"/> -->
 	
 	<!-- DI through constructor -->
-	<bean class="com.inexture.springExa.Student" id="student4" 
-		c:id="4"
+	<bean class="com.inexture.springExa.Student" id="student4" >
+		<!-- c:id="4"
 		c:name="XYZ"
-		c:address-ref="address" p:subject-ref="subjectlist"> 
+		c:address-ref="address" p:subject-ref="address">  -->
 		
+		<constructor-arg name="id" value="4" />
+		<constructor-arg name="name" value="XYZ" />
 		<constructor-arg name="subject">
 			<list>
 				<value>Physics</value>
@@ -102,6 +104,8 @@
 				<entry key="third" value="30"/>
 			</map>
 		</constructor-arg>
+		<constructor-arg name="address" ref="address" />
+		
 	</bean>
 	
 	

@@ -18,6 +18,9 @@ public class App
         
         Student s1 = (Student)context.getBean("student1");
         System.out.println(s1);
+        
+//        Student s1clone = (Student)context.getBean("student1");
+//        System.out.println(s1clone);
 //        System.out.println(s1.getSubject().getClass().getName());
 //        System.out.println(s1.getSubjet());
 //        System.out.println(s1.getMarks());
