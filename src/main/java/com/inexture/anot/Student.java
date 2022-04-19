@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component("student")
-@Scope("prototype")
+@Component
+@Scope("singleton")
 public class Student {
 	@Autowired
 	public Address address;
